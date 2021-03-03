@@ -6,7 +6,7 @@ include 'db.inc.php';
 $cipher = 'AES-128-CBC';
 $key = 'thebestsecretkey';
 date_default_timezone_set("UTC");
-echo "The details sent down are: <br>";
+echo "The details entered are: <br>";
 
 echo "First Name is :" . $_POST['firstname'] . "<br>";
 echo "Surname is :" . $_POST['surname'] . "<br>";
@@ -22,9 +22,13 @@ echo "Covid Q3 :" . $_POST['covidq3'] . "<br>";
 echo "Covid Q4 :" . $_POST['covidq4'] . "<br>";
 echo "Covid Q5 :" . $_POST['covidq5'] . "<br>";
 
-//$sql1 = "SELECT * FROM patientrecords";
-//$result1 = $con->query($sql1);
-//if (isset($sql1)){		
+if ($_POST['covidq1'] == 'yes')
+{
+echo "<b>******IMPORTANT NOTICE**********</b>","<br>";
+echo "<b>******PLEASE DO NOT ENTER THE BUILDING**********</b>","<br>";
+echo "<b>AS YOU HAVE SELECTED YES FOR ONE OF THE OPTIONS PLEASE ENSURE TO IMMEDIATELY SELF-ISOLATE</b>","<br>";
+}
+		
 	$iv = random_bytes(16);
 	$escaped_content = $con -> real_escape_string('$_POST[firstname]');
 	$escaped_content1 = $con -> real_escape_string('$_POST[surname]');
@@ -68,8 +72,8 @@ echo "Covid Q5 :" . $_POST['covidq5'] . "<br>";
 mysqli_close($con);
 
 ?>
-<form action = "http://localhost/Doctors Application/insertdetails.html"  method = "POST">
+<form action = "http://localhost/Doctors Application/home.html"  method = "POST">
 <br>
-	<input type = "submit" value = "Return to Insert Page"/>
+	<input type = "submit" value = "Return to Home Page"/>
 	
 </form>
